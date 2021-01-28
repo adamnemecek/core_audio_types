@@ -146,12 +146,29 @@ pub struct AudioValueRange {
 //     UInt32          mOutputDataSize;
 // };
 // typedef struct AudioValueTranslation    AudioValueTranslation;
-
+#[repr(C)]
 pub struct AudioValueTranslation {
-    pub m_input_data: std::ffi::c_void, // todo nonnnull
+    pub m_input_data: *const std::ffi::c_void, // todo nonnnull
     pub m_input_data_size: u32,
-    pub m_output_data: std::ffi::c_void, // todo nonnull
+    pub m_output_data: *const std::ffi::c_void, // todo nonnull
     pub m_output_data_size: u32,
+}
+
+impl AudioValueTranslation {
+    pub fn input_data(&self) -> &[u8] {
+        unsafe {
+            std::slice::from_raw_parts(self.m_input_data as *const u8, self.m_input_data_size as _)
+        }
+    }
+
+    // pub fn input_data_mut(&mut self) -> &mut [u8] {
+    //     todo!()
+    // }
+    pub fn output_data(&self) -> &[u8] {
+        unsafe {
+            std::slice::from_raw_parts(self.m_output_data as *const u8, self.m_output_data_size as _)
+        }
+    }
 }
 
 // //==================================================================================================
@@ -1252,6 +1269,37 @@ pub struct AudioChannelLabel(u32);
 // 	kAudioChannelBit_CenterTopRear              = (1U<<25),
 // 	kAudioChannelBit_RightTopRear               = (1U<<26),
 // };
+bitflags::bitflags! {
+    pub struct AudioChannelBitmap: u32 {
+        const Left                       = 1 << 0;
+        const Right                      = 1 << 1;
+        const Center                     = 1 << 2;
+        const LFEScreen                  = 1 << 3;
+        const LeftSurround               = 1 << 4;
+        const RightSurround              = 1 << 5;
+        const LeftCenter                 = 1 << 6;
+        const RightCenter                = 1 << 7;
+        const CenterSurround             = 1 << 8;      // WAVE: "Back Center"
+        const LeftSurroundDirect         = 1 << 9;
+        const RightSurroundDirect        = 1 << 10;
+        const TopCenterSurround          = 1 << 11;
+        const VerticalHeightLeft         = 1 << 12;     // WAVE: "Top Front Left"
+        const VerticalHeightCenter       = 1 << 13;     // WAVE: "Top Front Center"
+        const VerticalHeightRight        = 1 << 14;     // WAVE: "Top Front Right"
+        const TopBackLeft                = 1 << 15;
+        const TopBackCenter              = 1 << 16;
+        const TopBackRight               = 1 << 17;
+        const LeftTopFront               = Self::VerticalHeightLeft.bits;
+        const CenterTopFront             = Self::VerticalHeightCenter.bits;
+        const RightTopFront              = Self::VerticalHeightRight.bits;
+        const LeftTopMiddle              = 1 << 21;
+        const CenterTopMiddle            = Self::TopCenterSurround.bits;
+        const RightTopMiddle             = 1 << 23;
+        const LeftTopRear                = 1 << 24;
+        const CenterTopRear              = 1 << 25;
+        const RightTopRear               = 1 << 26;
+    }
+}
 
 // /*!
 //     @enum           AudioChannelFlags
@@ -1316,6 +1364,18 @@ bitflags::bitflags! {
 //     kAudioChannelCoordinates_Elevation  = 1,
 //     kAudioChannelCoordinates_Distance   = 2
 // };
+#[repr(C)]
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct AudioChannelCoordinateIndex(u32);
+
+impl AudioChannelCoordinateIndex {
+    pub const LeftRight: Self = Self(0);
+    pub const BackFront: Self = Self(1);
+    pub const DownUp: Self = Self(2);
+    pub const Azimuth: Self = Self(0);
+    pub const Elevation: Self = Self(1);
+    pub const Distance: Self = Self(2);
+}
 
 // /*!
 //     @enum           AudioChannelLayoutTag Constants
