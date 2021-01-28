@@ -843,8 +843,6 @@ bitflags::bitflags! {
     }
 }
 
-
-
 // /*!
 //     @struct         SMPTETime
 //     @abstract       A structure for holding a SMPTE time.
@@ -968,7 +966,7 @@ bitflags::bitflags! {
 // };
 // typedef struct AudioTimeStamp   AudioTimeStamp;
 #[repr(C)]
-#[derive(Clone, Copy, )]
+#[derive(Clone, Copy)]
 pub struct AudioTimeStamp {
     pub m_sample_time: f64,
     pub m_host_time: u64,
@@ -1604,6 +1602,19 @@ pub struct AudioTimeStamp {
 //     kMPEG4Object_CELP           = 8,
 //     kMPEG4Object_HVXC           = 9
 // };
+#[repr(u64)]
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
+pub enum MPEG4ObjectID {
+    AAC_Main = 1,
+    AAC_LC = 2,
+    AAC_SSR = 3,
+    AAC_LTP = 4,
+    AAC_SBR = 5,
+    AAC_Scalable = 6,
+    TwinVQ = 7,
+    CELP = 8,
+    HVXC = 9,
+}
 
 // //==================================================================================================
 
