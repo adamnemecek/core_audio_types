@@ -802,6 +802,23 @@ impl AudioFormatID {
 //     kSMPTETimeType2398      = 11
 // };
 
+#[repr(u32)]
+#[derive(Clone, Copy, PartialEq, Eq, Debug, Hash)]
+pub enum SMPTETimeType {
+    _24        = 0,
+    _25        = 1,
+    _30Drop    = 2,
+    _30        = 3,
+    _2997      = 4,
+    _2997Drop  = 5,
+    _60        = 6,
+    _5994      = 7,
+    _60Drop    = 8,
+    _5994Drop  = 9,
+    _50        = 10,
+    _2398      = 11
+}
+
 // /*!
 //     @enum           SMPTETimeFlags
 //     @abstract       Flags that describe the SMPTE time state.
