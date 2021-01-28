@@ -1,3 +1,4 @@
+use cc4::four_cc;
 // /*!
 // 	@file		CoreAudioBaseTypes.h
 // 	@framework	CoreAudioTypes.framework
@@ -204,7 +205,16 @@ pub struct AudioValueRange {
 //     @abstract       A four char code indicating the general kind of data in the stream.
 // */
 // typedef UInt32  AudioFormatID;
-pub type AudioFormatID = u32;
+
+#[repr(C)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Debug)]
+pub struct AudioFormatID(u32);
+
+impl From<&[u8; 4]> for AudioFormatID {
+    fn from(cc: &[u8; 4]) -> Self {
+        Self(four_cc(cc))
+    }
+}
 
 // /*!
 //     @typedef        AudioFormatFlags
@@ -266,7 +276,7 @@ pub type AudioFormatFlags = u32;
 // };
 // typedef struct AudioStreamBasicDescription  AudioStreamBasicDescription;
 #[repr(C)]
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Clone, Copy, PartialEq, Debug)]
 pub struct AudioStreamBasicDescription {
     pub m_sample_rate: f64,
     pub m_format_id: AudioFormatID,
@@ -426,6 +436,51 @@ pub struct AudioStreamBasicDescription {
 //     kAudioFormatFLAC                    = 'flac',
 //     kAudioFormatOpus                    = 'opus'
 // };
+
+#[allow(non_upper_case_globals)]
+impl AudioFormatID {
+    pub const LinearPCM: Self = Self(four_cc(b"lpcm"));
+    pub const AC3: Self = Self(four_cc(b"ac-3"));
+    pub const Format60958AC3: Self = Self(four_cc(b"cac3"));
+    pub const AppleIMA4: Self = Self(four_cc(b"ima4"));
+    pub const MPEG4AAC: Self = Self(four_cc(b"aac "));
+    pub const MPEG4CELP: Self = Self(four_cc(b"celp"));
+    pub const MPEG4HVXC: Self = Self(four_cc(b"hvxc"));
+    pub const MPEG4TwinVQ: Self = Self(four_cc(b"twvq"));
+    pub const MACE3: Self = Self(four_cc(b"MAC3"));
+    pub const MACE6: Self = Self(four_cc(b"MAC6"));
+    pub const ULaw: Self = Self(four_cc(b"ulaw"));
+    pub const ALaw: Self = Self(four_cc(b"alaw"));
+    pub const QDesign: Self = Self(four_cc(b"QDMC"));
+    pub const QDesign2: Self = Self(four_cc(b"QDM2"));
+    pub const QUALCOMM: Self = Self(four_cc(b"Qclp"));
+    pub const MPEGLayer1: Self = Self(four_cc(b".mp1"));
+    pub const MPEGLayer2: Self = Self(four_cc(b".mp2"));
+    pub const MPEGLayer3: Self = Self(four_cc(b".mp3"));
+    pub const TimeCode: Self = Self(four_cc(b"time"));
+    pub const MIDIStream: Self = Self(four_cc(b"midi"));
+    pub const ParameterValueStream: Self = Self(four_cc(b"apvs"));
+    pub const AppleLossless: Self = Self(four_cc(b"alac"));
+    pub const MPEG4AAC_HE: Self = Self(four_cc(b"aach"));
+    pub const MPEG4AAC_LD: Self = Self(four_cc(b"aacl"));
+    pub const MPEG4AAC_ELD: Self = Self(four_cc(b"aace"));
+    pub const MPEG4AAC_ELD_SBR: Self = Self(four_cc(b"aacf"));
+    pub const MPEG4AAC_ELD_V2: Self = Self(four_cc(b"aacg"));
+    pub const MPEG4AAC_HE_V2: Self = Self(four_cc(b"aacp"));
+    pub const MPEG4AAC_Spatial: Self = Self(four_cc(b"aacs"));
+    pub const MPEGD_USAC: Self = Self(four_cc(b"usac"));
+    pub const AMR: Self = Self(four_cc(b"samr"));
+    pub const AMR_WB: Self = Self(four_cc(b"sawb"));
+    pub const Audible: Self = Self(four_cc(b"AUDB"));
+    pub const iLBC: Self = Self(four_cc(b"ilbc"));
+    pub const DVIIntelIMA: Self = Self(0x6D73001);
+    pub const MicrosoftGSM: Self = Self(0x6D73003);
+    pub const AES3: Self = Self(four_cc(b"aes3"));
+    pub const EnhancedAC3: Self = Self(four_cc(b"ec-3"));
+    pub const FLAC: Self = Self(four_cc(b"flac"));
+    // todo: is this where the 0 should be?
+    pub const Opus: Self = Self(four_cc(b"opu\0"));
+}
 
 // /*!
 //     @enum           Standard AudioFormatFlags Values for AudioStreamBasicDescription
