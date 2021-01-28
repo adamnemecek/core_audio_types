@@ -166,7 +166,10 @@ impl AudioValueTranslation {
     // }
     pub fn output_data(&self) -> &[u8] {
         unsafe {
-            std::slice::from_raw_parts(self.m_output_data as *const u8, self.m_output_data_size as _)
+            std::slice::from_raw_parts(
+                self.m_output_data as *const u8,
+                self.m_output_data_size as _,
+            )
         }
     }
 }
@@ -1328,9 +1331,9 @@ bitflags::bitflags! {
 bitflags::bitflags! {
     pub struct AudioChannelFlags: u32 {
         const AllOff                   = 0;
-        const RectangularCoordinates   = 1<<0;
-        const SphericalCoordinates     = 1<<1;
-        const Meters                   = 1<<2;
+        const RectangularCoordinates   = 1 << 0;
+        const SphericalCoordinates     = 1 << 1;
+        const Meters                   = 1 << 2;
     }
 }
 

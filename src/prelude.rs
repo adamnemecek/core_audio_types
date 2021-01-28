@@ -1,6 +1,7 @@
 pub use crate::{
     AVAudioSessionErrorCode,
     AudioBuffer,
+    AudioChannelBitmap,
     AudioChannelCoordinateIndex,
     AudioChannelDescription,
     AudioChannelFlags,
@@ -18,5 +19,4 @@ pub use crate::{
     AudioValueTranslation,
     SMPTETime,
     SMPTETimeFlags,
-    AudioChannelBitmap,
 };
