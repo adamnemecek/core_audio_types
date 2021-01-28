@@ -1,3 +1,5 @@
+#![deny(unconditional_recursion)]
+
 pub mod prelude;
 
 mod audio_session_types;
