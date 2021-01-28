@@ -1,5 +1,6 @@
 #![deny(unconditional_recursion)]
 #![feature(const_fn_transmute)]
+#![allow(non_upper_case_globals)]
 
 pub mod prelude;
 

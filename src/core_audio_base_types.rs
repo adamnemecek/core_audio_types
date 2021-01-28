@@ -834,10 +834,16 @@ pub enum SMPTETimeType {
 //     kSMPTETimeRunning   = (1U << 1)
 // };
 
-//todo!
-#[repr(C)]
-#[derive(Clone, Copy, PartialEq, Eq)]
-pub struct SMPTETimeFlags(u32);
+bitflags::bitflags! {
+    #[repr(C)]
+    pub struct SMPTETimeFlags: u32 {
+        const Unknown = 0;
+        const Valid = 1 << 0;
+        const TimeRunning = 1 << 1;
+    }
+}
+
+
 
 // /*!
 //     @struct         SMPTETime
@@ -918,7 +924,7 @@ pub struct SMPTETime {
 //     kAudioTimeStampSampleHostTimeValid  = (kAudioTimeStampSampleTimeValid | kAudioTimeStampHostTimeValid)
 // };
 bitflags::bitflags! {
-   #[allow(non_upper_case_globals)]
+
    #[repr(C)]
     pub struct AudioTimeStampFlags: u32 {
         const NothingValid         = 0;
