@@ -1311,8 +1311,10 @@ impl AudioChannelLabel {
     pub const DialogCentricMix: Self = Self(43);
 
     //     kAudioChannelLabel_CenterSurroundDirect     = 44,           ///< back center, non diffuse
+    pub const CenterSurroundDirect: Self = Self(44);
 
     //     kAudioChannelLabel_Haptic                   = 45,
+    pub const Haptic: Self = Self(45);
 
     // 	kAudioChannelLabel_LeftTopFront             = kAudioChannelLabel_VerticalHeightLeft,
     pub const LeftTopFront: Self = Self::VerticalHeightLeft;
@@ -1335,17 +1337,25 @@ impl AudioChannelLabel {
 
     //     // first order ambisonic channels
     //     kAudioChannelLabel_Ambisonic_W              = 200,
+    pub const Ambisonic_W: Self = Self(200);
     //     kAudioChannelLabel_Ambisonic_X              = 201,
+    pub const Ambisonic_X: Self = Self(201);
     //     kAudioChannelLabel_Ambisonic_Y              = 202,
+    pub const Ambisonic_Y: Self = Self(202);
     //     kAudioChannelLabel_Ambisonic_Z              = 203,
+    pub const Ambisonic_Z: Self = Self(203);
 
     //     // Mid/Side Recording
     //     kAudioChannelLabel_MS_Mid                   = 204,
+    pub const MS_Mid: Self = Self(204);
     //     kAudioChannelLabel_MS_Side                  = 205,
+    pub const MS_Side: Self = Self(205);
 
     //     // X-Y Recording
     //     kAudioChannelLabel_XY_X                     = 206,
+    pub const XY_X: Self = Self(206);
     //     kAudioChannelLabel_XY_Y                     = 207,
+    pub const XY_Y: Self = Self(207);
 
     //     // Binaural Recording
     //     kAudioChannelLabel_BinauralLeft             = 208,
