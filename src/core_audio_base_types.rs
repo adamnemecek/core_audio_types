@@ -835,6 +835,8 @@ pub enum SMPTETimeType {
 // };
 
 //todo!
+#[repr(C)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct SMPTETimeFlags(u32);
 
 // /*!
@@ -873,6 +875,8 @@ pub struct SMPTETimeFlags(u32);
 // };
 // typedef struct SMPTETime    SMPTETime;
 
+#[repr(C)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub struct SMPTETime {
     pub m_subframes: i16,
     pub m_subframe_divisor: i16,
@@ -914,17 +918,18 @@ pub struct SMPTETime {
 //     kAudioTimeStampSampleHostTimeValid  = (kAudioTimeStampSampleTimeValid | kAudioTimeStampHostTimeValid)
 // };
 bitflags::bitflags! {
-    #[allow(non_upper_case_globals)]
-     pub struct AudioTimeStampFlags: u32 {
-         const NothingValid         = 0;
-         const SampleTimeValid      = 1 << 0;
-         const HostTimeValid        = 1 << 1;
-         const RateScalarValid      = 1 << 2;
-         const WordClockTimeValid   = 1 << 3;
-         const SMPTETimeValid       = 1 << 4;
-         const SampleHostTimeValid  = Self::SampleTimeValid.bits | Self::HostTimeValid.bits;
-     }
- }
+   #[allow(non_upper_case_globals)]
+   #[repr(C)]
+    pub struct AudioTimeStampFlags: u32 {
+        const NothingValid         = 0;
+        const SampleTimeValid      = 1 << 0;
+        const HostTimeValid        = 1 << 1;
+        const RateScalarValid      = 1 << 2;
+        const WordClockTimeValid   = 1 << 3;
+        const SMPTETimeValid       = 1 << 4;
+        const SampleHostTimeValid  = Self::SampleTimeValid.bits | Self::HostTimeValid.bits;
+    }
+}
 
 // /*!
 //     @struct         AudioTimeStamp
@@ -956,6 +961,17 @@ bitflags::bitflags! {
 //     UInt32              mReserved;
 // };
 // typedef struct AudioTimeStamp   AudioTimeStamp;
+#[repr(C)]
+#[derive(Clone, Copy, )]
+pub struct AudioTimeStamp {
+    pub m_sample_time: f64,
+    pub m_host_time: u64,
+    pub m_rate_scalar: f64,
+    pub m_word_clock_time: u64,
+    pub m_smpte_time: SMPTETime,
+    pub m_flags: AudioTimeStampFlags,
+    pub m_reserved: u32,
+}
 
 // /*!
 //     @function   FillOutAudioTimeStampWithSampleTime
