@@ -1408,25 +1408,43 @@ impl AudioChannelLabel {
 
     //     // generic HOA ACN channel
     //     kAudioChannelLabel_HOA_ACN                  = 500,
+    pub const HOA_ACN: Self = Self(500);
 
     //     // numbered HOA ACN channels
     //     kAudioChannelLabel_HOA_ACN_0                = (2U << 16) | 0,
+    pub const HOA_ACN_0: Self = Self((2 << 16) | 0);
     //     kAudioChannelLabel_HOA_ACN_1                = (2U << 16) | 1,
+    pub const HOA_ACN_1: Self = Self((2 << 16) | 1);
     //     kAudioChannelLabel_HOA_ACN_2                = (2U << 16) | 2,
+    pub const HOA_ACN_2: Self = Self((2 << 16) | 2);
     //     kAudioChannelLabel_HOA_ACN_3                = (2U << 16) | 3,
+    pub const HOA_ACN_3: Self = Self((2 << 16) | 3);
     //     kAudioChannelLabel_HOA_ACN_4                = (2U << 16) | 4,
+    pub const HOA_ACN_4: Self = Self((2 << 16) | 4);
     //     kAudioChannelLabel_HOA_ACN_5                = (2U << 16) | 5,
+    pub const HOA_ACN_5: Self = Self((2 << 16) | 5);
     //     kAudioChannelLabel_HOA_ACN_6                = (2U << 16) | 6,
+    pub const HOA_ACN_6: Self = Self((2 << 16) | 6);
     //     kAudioChannelLabel_HOA_ACN_7                = (2U << 16) | 7,
+    pub const HOA_ACN_7: Self = Self((2 << 16) | 7);
     //     kAudioChannelLabel_HOA_ACN_8                = (2U << 16) | 8,
+    pub const HOA_ACN_8: Self = Self((2 << 16) | 8);
     //     kAudioChannelLabel_HOA_ACN_9                = (2U << 16) | 9,
+    pub const HOA_ACN_9: Self = Self((2 << 16) | 9);
     //     kAudioChannelLabel_HOA_ACN_10               = (2U << 16) | 10,
+    pub const HOA_ACN_10: Self = Self((2 << 16) | 10);
     //     kAudioChannelLabel_HOA_ACN_11               = (2U << 16) | 11,
+    pub const HOA_ACN_11: Self = Self((2 << 16) | 11);
     //     kAudioChannelLabel_HOA_ACN_12               = (2U << 16) | 12,
+    pub const HOA_ACN_12: Self = Self((2 << 16) | 12);
     //     kAudioChannelLabel_HOA_ACN_13               = (2U << 16) | 13,
+    pub const HOA_ACN_13: Self = Self((2 << 16) | 13);
     //     kAudioChannelLabel_HOA_ACN_14               = (2U << 16) | 14,
+    pub const HOA_ACN_14: Self = Self((2 << 16) | 14);
     //     kAudioChannelLabel_HOA_ACN_15               = (2U << 16) | 15,
+    pub const HOA_ACN_15: Self = Self((2 << 16) | 15);
     //     kAudioChannelLabel_HOA_ACN_65024            = (2U << 16) | 65024,    // 254th order uses 65025 channels
+    pub const HOA_ACN_65024: Self = Self((2 << 16) | 65024);
 
     //     kAudioChannelLabel_BeginReserved            = 0xF0000000,           // Channel label values in this range are reserved for internal use
     //     kAudioChannelLabel_EndReserved              = 0xFFFFFFFE
