@@ -1447,7 +1447,9 @@ impl AudioChannelLabel {
     pub const HOA_ACN_65024: Self = Self((2 << 16) | 65024);
 
     //     kAudioChannelLabel_BeginReserved            = 0xF0000000,           // Channel label values in this range are reserved for internal use
+    pub const BeginReserved: Self = Self(0xF0000000);
     //     kAudioChannelLabel_EndReserved              = 0xFFFFFFFE
+    pub const EndReserved: Self = Self(0xFFFFFFFE);
 }
 
 // /*!
