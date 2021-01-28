@@ -1288,30 +1288,50 @@ impl AudioChannelLabel {
     pub const TopBackRight: Self = Self(18);
 
     //     kAudioChannelLabel_RearSurroundLeft         = 33,
+    pub const RearSurroundLeft: Self = Self(33);
     //     kAudioChannelLabel_RearSurroundRight        = 34,
+    pub const RearSurroundRight: Self = Self(34);
     //     kAudioChannelLabel_LeftWide                 = 35,
+    pub const LeftWide: Self = Self(35);
     //     kAudioChannelLabel_RightWide                = 36,
+    pub const RightWide: Self = Self(36);
     //     kAudioChannelLabel_LFE2                     = 37,
+    pub const LFE2: Self = Self(37);
     //     kAudioChannelLabel_LeftTotal                = 38,           ///< matrix encoded 4 channels
+    pub const LeftTotal: Self = Self(38);
     //     kAudioChannelLabel_RightTotal               = 39,           ///< matrix encoded 4 channels
+    pub const RightTotal: Self = Self(39);
     //     kAudioChannelLabel_HearingImpaired          = 40,
+    pub const HearingImpaired: Self = Self(40);
     //     kAudioChannelLabel_Narration                = 41,
+    pub const Narration: Self = Self(41);
     //     kAudioChannelLabel_Mono                     = 42,
+    pub const Mono: Self = Self(42);
     //     kAudioChannelLabel_DialogCentricMix         = 43,
+    pub const DialogCentricMix: Self = Self(43);
 
     //     kAudioChannelLabel_CenterSurroundDirect     = 44,           ///< back center, non diffuse
 
     //     kAudioChannelLabel_Haptic                   = 45,
 
     // 	kAudioChannelLabel_LeftTopFront             = kAudioChannelLabel_VerticalHeightLeft,
+    pub const LeftTopFront: Self = Self::VerticalHeightLeft;
     // 	kAudioChannelLabel_CenterTopFront           = kAudioChannelLabel_VerticalHeightCenter,
+    pub const CenterTopFront: Self = Self::VerticalHeightCenter;
     // 	kAudioChannelLabel_RightTopFront            = kAudioChannelLabel_VerticalHeightRight,
+    pub const RightTopFront: Self = Self::VerticalHeightRight;
     // 	kAudioChannelLabel_LeftTopMiddle            = 49,
+    pub const LeftTopMiddle: Self = Self(49);
     // 	kAudioChannelLabel_CenterTopMiddle          = kAudioChannelLabel_TopCenterSurround,
+    pub const CenterTopMiddle: Self = Self::TopCenterSurround;
     // 	kAudioChannelLabel_RightTopMiddle           = 51,
+    pub const RightTopMiddle: Self = Self(51);
     // 	kAudioChannelLabel_LeftTopRear              = 52,
+    pub const LeftTopRear: Self = Self(52);
     // 	kAudioChannelLabel_CenterTopRear            = 53,
+    pub const CenterTopRear: Self = Self(53);
     // 	kAudioChannelLabel_RightTopRear             = 54,
+    pub const RightTopRear: Self = Self(54);
 
     //     // first order ambisonic channels
     //     kAudioChannelLabel_Ambisonic_W              = 200,
