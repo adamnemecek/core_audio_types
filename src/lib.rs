@@ -1,4 +1,5 @@
 #![deny(unconditional_recursion)]
+#![feature(const_fn_transmute)]
 
 pub mod prelude;
 

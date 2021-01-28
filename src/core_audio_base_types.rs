@@ -1,3 +1,4 @@
+use crate::prelude::*;
 use cc4::four_cc;
 // /*!
 // 	@file		CoreAudioBaseTypes.h
@@ -77,6 +78,22 @@ use cc4::four_cc;
 //     kAudio_ParamError             = -50,
 //     kAudio_MemFullError           = -108
 // };
+
+const fn cast(a: i32) -> u32 {
+    unsafe { std::mem::transmute(a) }
+}
+
+#[repr(u32)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, Debug)]
+pub enum OSStatus {
+    Unimplemented = cast(-4),
+    FileNotFound = cast(-43),
+    FilePermission = cast(-54),
+    TooManyFilesOpen = cast(-42),
+    BadFilePath = four_cc(b"!pth"), // 0x21707468, 561017960
+    Param = cast(-50),
+    MemFull = cast(-108),
+}
 
 // //==================================================================================================
 // #pragma mark -
@@ -211,7 +228,7 @@ pub struct AudioValueRange {
 pub struct AudioFormatID(u32);
 
 impl AudioFormatID {
-    pub const fn new(cc: &[u8;4]) -> Self {
+    pub const fn new(cc: &[u8; 4]) -> Self {
         Self(four_cc(cc))
     }
 }
@@ -439,47 +456,47 @@ pub struct AudioStreamBasicDescription {
 
 #[allow(non_upper_case_globals)]
 impl AudioFormatID {
-    pub const LinearPCM: Self               = Self::new(b"lpcm");
-    pub const AC3: Self                     = Self::new(b"ac-3");
-    pub const Format60958AC3: Self          = Self::new(b"cac3");
-    pub const AppleIMA4: Self               = Self::new(b"ima4");
-    pub const MPEG4AAC: Self                = Self::new(b"aac ");
-    pub const MPEG4CELP: Self               = Self::new(b"celp");
-    pub const MPEG4HVXC: Self               = Self::new(b"hvxc");
-    pub const MPEG4TwinVQ: Self             = Self::new(b"twvq");
-    pub const MACE3: Self                   = Self::new(b"MAC3");
-    pub const MACE6: Self                   = Self::new(b"MAC6");
-    pub const ULaw: Self                    = Self::new(b"ulaw");
-    pub const ALaw: Self                    = Self::new(b"alaw");
-    pub const QDesign: Self                 = Self::new(b"QDMC");
-    pub const QDesign2: Self                = Self::new(b"QDM2");
-    pub const QUALCOMM: Self                = Self::new(b"Qclp");
-    pub const MPEGLayer1: Self              = Self::new(b".mp1");
-    pub const MPEGLayer2: Self              = Self::new(b".mp2");
-    pub const MPEGLayer3: Self              = Self::new(b".mp3");
-    pub const TimeCode: Self                = Self::new(b"time");
-    pub const MIDIStream: Self              = Self::new(b"midi");
-    pub const ParameterValueStream: Self    = Self::new(b"apvs");
-    pub const AppleLossless: Self           = Self::new(b"alac");
-    pub const MPEG4AAC_HE: Self             = Self::new(b"aach");
-    pub const MPEG4AAC_LD: Self             = Self::new(b"aacl");
-    pub const MPEG4AAC_ELD: Self            = Self::new(b"aace");
-    pub const MPEG4AAC_ELD_SBR: Self        = Self::new(b"aacf");
-    pub const MPEG4AAC_ELD_V2: Self         = Self::new(b"aacg");
-    pub const MPEG4AAC_HE_V2: Self          = Self::new(b"aacp");
-    pub const MPEG4AAC_Spatial: Self        = Self::new(b"aacs");
-    pub const MPEGD_USAC: Self              = Self::new(b"usac");
-    pub const AMR: Self                     = Self::new(b"samr");
-    pub const AMR_WB: Self                  = Self::new(b"sawb");
-    pub const Audible: Self                 = Self::new(b"AUDB");
-    pub const iLBC: Self                    = Self::new(b"ilbc");
-    pub const DVIIntelIMA: Self             = Self(0x6D73001);
-    pub const MicrosoftGSM: Self            = Self(0x6D73003);
-    pub const AES3: Self                    = Self::new(b"aes3");
-    pub const EnhancedAC3: Self             = Self::new(b"ec-3");
-    pub const FLAC: Self                    = Self::new(b"flac");
+    pub const LinearPCM: Self = Self::new(b"lpcm");
+    pub const AC3: Self = Self::new(b"ac-3");
+    pub const Format60958AC3: Self = Self::new(b"cac3");
+    pub const AppleIMA4: Self = Self::new(b"ima4");
+    pub const MPEG4AAC: Self = Self::new(b"aac ");
+    pub const MPEG4CELP: Self = Self::new(b"celp");
+    pub const MPEG4HVXC: Self = Self::new(b"hvxc");
+    pub const MPEG4TwinVQ: Self = Self::new(b"twvq");
+    pub const MACE3: Self = Self::new(b"MAC3");
+    pub const MACE6: Self = Self::new(b"MAC6");
+    pub const ULaw: Self = Self::new(b"ulaw");
+    pub const ALaw: Self = Self::new(b"alaw");
+    pub const QDesign: Self = Self::new(b"QDMC");
+    pub const QDesign2: Self = Self::new(b"QDM2");
+    pub const QUALCOMM: Self = Self::new(b"Qclp");
+    pub const MPEGLayer1: Self = Self::new(b".mp1");
+    pub const MPEGLayer2: Self = Self::new(b".mp2");
+    pub const MPEGLayer3: Self = Self::new(b".mp3");
+    pub const TimeCode: Self = Self::new(b"time");
+    pub const MIDIStream: Self = Self::new(b"midi");
+    pub const ParameterValueStream: Self = Self::new(b"apvs");
+    pub const AppleLossless: Self = Self::new(b"alac");
+    pub const MPEG4AAC_HE: Self = Self::new(b"aach");
+    pub const MPEG4AAC_LD: Self = Self::new(b"aacl");
+    pub const MPEG4AAC_ELD: Self = Self::new(b"aace");
+    pub const MPEG4AAC_ELD_SBR: Self = Self::new(b"aacf");
+    pub const MPEG4AAC_ELD_V2: Self = Self::new(b"aacg");
+    pub const MPEG4AAC_HE_V2: Self = Self::new(b"aacp");
+    pub const MPEG4AAC_Spatial: Self = Self::new(b"aacs");
+    pub const MPEGD_USAC: Self = Self::new(b"usac");
+    pub const AMR: Self = Self::new(b"samr");
+    pub const AMR_WB: Self = Self::new(b"sawb");
+    pub const Audible: Self = Self::new(b"AUDB");
+    pub const iLBC: Self = Self::new(b"ilbc");
+    pub const DVIIntelIMA: Self = Self(0x6D73001);
+    pub const MicrosoftGSM: Self = Self(0x6D73003);
+    pub const AES3: Self = Self::new(b"aes3");
+    pub const EnhancedAC3: Self = Self::new(b"ec-3");
+    pub const FLAC: Self = Self::new(b"flac");
     // todo: is this where the 0 should be?
-    pub const Opus: Self                    = Self::new(b"\0opu");
+    pub const Opus: Self = Self::new(b"\0opu");
 }
 
 // /*!
