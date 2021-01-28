@@ -3,4 +3,5 @@ pub use crate::{
     AudioFormatID,
     AudioStreamBasicDescription,
     AudioValueRange,
+    AVAudioSessionErrorCode,
 };

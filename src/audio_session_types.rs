@@ -108,23 +108,23 @@ const fn cast(a: i32) -> u64 {
     a as u64
 }
 #[repr(u64)]
-#[derive(Clone, Copy, PartialEq, Eq, Hash, Debug)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash,)]
 pub enum AVAudioSessionErrorCode {
     None = 0,
-    MediaServicesFailed = four_cc(b"msrv"), // 0x6D737276, 1836282486
-    IsBusy = four_cc(b"!act"),              // 0x21616374, 560030580
-    IncompatibleCategory = four_cc(b"!cat"), // 0x21636174, 560161140
+    MediaServicesFailed = four_cc(b"msrv"),   // 0x6D737276, 1836282486
+    IsBusy = four_cc(b"!act"),                // 0x21616374, 560030580
+    IncompatibleCategory = four_cc(b"!cat"),  // 0x21636174, 560161140
     CannotInterruptOthers = four_cc(b"!int"), // 0x21696E74, 560557684
-    MissingEntitlement = four_cc(b"ent?"),  // 0x656E743F, 1701737535
-    SiriIsRecording = four_cc(b"siri"),     // 0x73697269, 1936290409
-    CannotStartPlaying = four_cc(b"!pla"),  // 0x21706C61, 561015905
-    CannotStartRecording = four_cc(b"!rec"), // 0x21726563, 561145187
+    MissingEntitlement = four_cc(b"ent?"),    // 0x656E743F, 1701737535
+    SiriIsRecording = four_cc(b"siri"),       // 0x73697269, 1936290409
+    CannotStartPlaying = four_cc(b"!pla"),    // 0x21706C61, 561015905
+    CannotStartRecording = four_cc(b"!rec"),  // 0x21726563, 561145187
     BadParam = cast(-50),
-    InsufficientPriority = four_cc(b"!pri"), // 0x21707269, 561017449
-    ResourceNotAvailable = four_cc(b"!res"), // 0x21726573, 561145203
-    Unspecified = four_cc(b"what"),          // 0x77686174, 2003329396
-    ExpiredSession = four_cc(b"!ses"),       // 0x21736573, 561210739
-    SessionNotActive = four_cc(b"inac"),     // 0x696e6163, 1768841571
+    InsufficientPriority = four_cc(b"!pri"),  // 0x21707269, 561017449
+    ResourceNotAvailable = four_cc(b"!res"),  // 0x21726573, 561145203
+    Unspecified = four_cc(b"what"),           // 0x77686174, 2003329396
+    ExpiredSession = four_cc(b"!ses"),        // 0x21736573, 561210739
+    SessionNotActive = four_cc(b"inac"),      // 0x696e6163, 1768841571
 }
 
 // enum {
