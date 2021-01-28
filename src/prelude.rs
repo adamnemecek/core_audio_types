@@ -6,6 +6,7 @@ pub use crate::{
     AudioChannelDescription,
     AudioChannelFlags,
     AudioChannelLabel,
+    AudioChannelLayout,
     AudioChannelLayoutTag,
     AudioClassDescription,
     AudioFormatFlags,

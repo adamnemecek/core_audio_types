@@ -1660,6 +1660,25 @@ pub struct AudioChannelDescription {
 // };
 // typedef struct AudioChannelLayout AudioChannelLayout;
 
+#[repr(C)]
+pub struct AudioChannelLayout {
+    pub m_channel_layout_tag: AudioChannelLayoutTag,
+    pub m_channel_bitmap: AudioChannelBitmap,
+    pub m_number_channel_descriptions: u32,
+    pub m_channel_descriptions: [AudioChannelDescription; 1], // this is a variable length array of mNumberChannelDescriptions elements
+}
+
+impl AudioChannelLayout {
+    pub fn channel_descriptions(&self) -> &[AudioChannelDescription] {
+        unsafe {
+            std::slice::from_raw_parts(
+                self.m_channel_descriptions.as_ptr(),
+                self.m_number_channel_descriptions as _,
+            )
+        }
+    }
+}
+
 // /*!
 //     @function       AudioChannelLayoutTag_GetNumberOfChannels
 //     @abstract       A macro to get the number of channels out of an AudioChannelLayoutTag
