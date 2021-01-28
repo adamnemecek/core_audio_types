@@ -146,6 +146,13 @@ pub struct AudioValueRange {
 // };
 // typedef struct AudioValueTranslation    AudioValueTranslation;
 
+pub struct AudioValueTranslation {
+    pub m_input_data: std::ffi::c_void, // todo nonnnull
+    pub m_input_data_size: u32,
+    pub m_output_data: std::ffi::c_void, // todo nonnull
+    pub m_output_data_size: u32,
+}
+
 // //==================================================================================================
 // #pragma mark -
 // #pragma mark AudioBuffer/AudioBufferList
@@ -167,6 +174,11 @@ pub struct AudioValueRange {
 //     void* __nullable    mData;
 // };
 // typedef struct AudioBuffer  AudioBuffer;
+pub struct AudioBuffer {
+    pub m_number_channels: u32,
+    pub m_data_byte_size: u32,
+    pub m_data: std::ffi::c_void, // todo nullable
+}
 
 // /*!
 //     @struct         AudioBufferList
