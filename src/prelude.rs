@@ -4,6 +4,7 @@ pub use crate::{
     AudioFormatFlags,
     AudioFormatID,
     AudioStreamBasicDescription,
+    AudioStreamPacketDescription,
     AudioTimeStamp,
     AudioTimeStampFlags,
     AudioValueRange,

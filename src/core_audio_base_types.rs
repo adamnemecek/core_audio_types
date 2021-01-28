@@ -625,6 +625,12 @@ impl AudioFormatID {
 //     kAppleLosslessFormatFlag_32BitSourceData    = 4
 // };
 
+// bitflags::bitflags! {
+//     pub struct AudioFormatFlags: u32 {
+
+//     }
+// }
+
 // /*!
 //     @enum           Commonly Used Combinations of AudioFormatFlags
 //     @abstract       Some commonly used combinations of flags for AudioStreamBasicDescriptions.
@@ -749,6 +755,13 @@ impl AudioFormatID {
 //     UInt32  mDataByteSize;
 // };
 // typedef struct AudioStreamPacketDescription AudioStreamPacketDescription;
+#[repr(C)]
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct AudioStreamPacketDescription {
+    pub m_start_offset: i64,
+    pub m_variable_frames_in_packet: u32,
+    pub m_data_byte_size: u32,
+}
 
 // //==================================================================================================
 // #pragma mark -
