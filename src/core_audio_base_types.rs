@@ -1,4 +1,5 @@
 use crate::prelude::*;
+use bitflags::bitflags;
 use cc4::four_cc;
 // /*!
 // 	@file		CoreAudioBaseTypes.h
@@ -893,7 +894,7 @@ bitflags::bitflags! {
 // typedef struct SMPTETime    SMPTETime;
 
 #[repr(C)]
-#[derive(Clone, Copy, PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
 pub struct SMPTETime {
     pub m_subframes: i16,
     pub m_subframe_divisor: i16,
@@ -979,7 +980,7 @@ bitflags::bitflags! {
 // };
 // typedef struct AudioTimeStamp   AudioTimeStamp;
 #[repr(C)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioTimeStamp {
     pub m_sample_time: f64,
     pub m_host_time: u64,
@@ -1049,6 +1050,14 @@ pub struct AudioTimeStamp {
 //     OSType  mManufacturer;
 // };
 // typedef struct AudioClassDescription    AudioClassDescription;
+pub type OSType = u32;
+#[repr(C)]
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub struct AudioClassDescription {
+    pub m_type: OSType,
+    pub m_sub_type: OSType,
+    pub m_manufacturer: OSType,
+}
 
 // //==================================================================================================
 // #pragma mark -
@@ -1059,6 +1068,9 @@ pub struct AudioTimeStamp {
 //     @abstract       A tag identifying how the channel is to be used.
 // */
 // typedef UInt32 AudioChannelLabel;
+#[repr(C)]
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
+pub struct AudioChannelLabel(u32);
 
 // /*!
 //     @typedef        AudioChannelLayoutTag
@@ -1264,6 +1276,15 @@ pub struct AudioTimeStamp {
 //     kAudioChannelFlags_SphericalCoordinates     = (1U<<1),
 //     kAudioChannelFlags_Meters                   = (1U<<2)
 // };
+
+bitflags::bitflags! {
+    pub struct AudioChannelFlags: u32 {
+        const AllOff                   = 0;
+        const RectangularCoordinates   = 1<<0;
+        const SphericalCoordinates     = 1<<1;
+        const Meters                   = 1<<2;
+    }
+}
 
 // // these are indices for acessing the mCoordinates array in struct AudioChannelDescription
 // /*!
@@ -1511,6 +1532,13 @@ pub struct AudioTimeStamp {
 //     kAudioChannelLayoutTag_Unknown                  = 0xFFFF0000                            ///< needs to be ORed with the actual number of channels
 // };
 
+// todo: is this actually u32?
+#[repr(u32)]
+#[derive(Clone, Copy, PartialEq)]
+pub enum AudioChannelLayoutTag {
+    A,
+}
+
 // /*!
 //     @struct         AudioChannelDescription
 //     @abstract       This structure describes a single channel.
@@ -1528,7 +1556,13 @@ pub struct AudioTimeStamp {
 //     Float32             mCoordinates[3];
 // };
 // typedef struct AudioChannelDescription AudioChannelDescription;
-
+#[repr(C)]
+#[derive(Clone, Copy, PartialEq, Debug)]
+pub struct AudioChannelDescription {
+    pub m_channel_label: AudioChannelLabel,
+    pub m_channel_flags: AudioChannelFlags,
+    pub m_coordinates: [f32; 3],
+}
 // /*!
 //     @struct         AudioChannelLayout
 //     @abstract       This structure is used to specify channel layouts in files and hardware.
@@ -1593,6 +1627,13 @@ pub struct AudioTimeStamp {
 //     AudioChannelLayoutTag            mChannelLayoutTag;
 // };
 // typedef struct AudioFormatListItem AudioFormatListItem;
+
+#[repr(C)]
+#[derive(Clone, Copy, PartialEq)]
+pub struct AudioFormatListItem {
+    pub m_asbd: AudioStreamBasicDescription,
+    pub m_channel_layout_tag: AudioChannelLayoutTag,
+}
 
 // // Deprecated constants
 
