@@ -805,18 +805,18 @@ impl AudioFormatID {
 #[repr(u32)]
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash)]
 pub enum SMPTETimeType {
-    _24        = 0,
-    _25        = 1,
-    _30Drop    = 2,
-    _30        = 3,
-    _2997      = 4,
-    _2997Drop  = 5,
-    _60        = 6,
-    _5994      = 7,
-    _60Drop    = 8,
-    _5994Drop  = 9,
-    _50        = 10,
-    _2398      = 11
+    _24 = 0,
+    _25 = 1,
+    _30Drop = 2,
+    _30 = 3,
+    _2997 = 4,
+    _2997Drop = 5,
+    _60 = 6,
+    _5994 = 7,
+    _60Drop = 8,
+    _5994Drop = 9,
+    _50 = 10,
+    _2398 = 11,
 }
 
 // /*!
@@ -833,6 +833,9 @@ pub enum SMPTETimeType {
 //     kSMPTETimeValid     = (1U << 0),
 //     kSMPTETimeRunning   = (1U << 1)
 // };
+
+//todo!
+pub struct SMPTETimeFlags(u32);
 
 // /*!
 //     @struct         SMPTETime
@@ -869,6 +872,18 @@ pub enum SMPTETimeType {
 //     SInt16          mFrames;
 // };
 // typedef struct SMPTETime    SMPTETime;
+
+pub struct SMPTETime {
+    pub m_subframes: i16,
+    pub m_subframe_divisor: i16,
+    pub m_counter: u32,
+    pub m_type: SMPTETimeType,
+    pub m_flags: SMPTETimeFlags,
+    pub m_hours: i16,
+    pub m_minutes: i16,
+    pub m_seconds: i16,
+    pub m_frames: i16,
+}
 
 // #endif
 
