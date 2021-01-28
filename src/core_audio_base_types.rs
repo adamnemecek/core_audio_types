@@ -1372,22 +1372,39 @@ impl AudioChannelLabel {
 
     //     // numbered discrete channel
     //     kAudioChannelLabel_Discrete_0               = (1U<<16) | 0,
+    pub const Discrete_0: Self = Self((1 << 16) | 0);
     //     kAudioChannelLabel_Discrete_1               = (1U<<16) | 1,
+    pub const Discrete_1: Self = Self((1 << 16) | 1);
     //     kAudioChannelLabel_Discrete_2               = (1U<<16) | 2,
+    pub const Discrete_2: Self = Self((1 << 16) | 2);
     //     kAudioChannelLabel_Discrete_3               = (1U<<16) | 3,
+    pub const Discrete_3: Self = Self((1 << 16) | 3);
     //     kAudioChannelLabel_Discrete_4               = (1U<<16) | 4,
+    pub const Discrete_4: Self = Self((1 << 16) | 4);
     //     kAudioChannelLabel_Discrete_5               = (1U<<16) | 5,
+    pub const Discrete_5: Self = Self((1 << 16) | 5);
     //     kAudioChannelLabel_Discrete_6               = (1U<<16) | 6,
+    pub const Discrete_6: Self = Self((1 << 16) | 6);
     //     kAudioChannelLabel_Discrete_7               = (1U<<16) | 7,
+    pub const Discrete_7: Self = Self((1 << 16) | 7);
     //     kAudioChannelLabel_Discrete_8               = (1U<<16) | 8,
+    pub const Discrete_8: Self = Self((1 << 16) | 8);
     //     kAudioChannelLabel_Discrete_9               = (1U<<16) | 9,
+    pub const Discrete_9: Self = Self((1 << 16) | 9);
     //     kAudioChannelLabel_Discrete_10              = (1U<<16) | 10,
+    pub const Discrete_10: Self = Self((1 << 16) | 10);
     //     kAudioChannelLabel_Discrete_11              = (1U<<16) | 11,
+    pub const Discrete_11: Self = Self((1 << 16) | 11);
     //     kAudioChannelLabel_Discrete_12              = (1U<<16) | 12,
+    pub const Discrete_12: Self = Self((1 << 16) | 12);
     //     kAudioChannelLabel_Discrete_13              = (1U<<16) | 13,
+    pub const Discrete_13: Self = Self((1 << 16) | 13);
     //     kAudioChannelLabel_Discrete_14              = (1U<<16) | 14,
+    pub const Discrete_14: Self = Self((1 << 16) | 14);
     //     kAudioChannelLabel_Discrete_15              = (1U<<16) | 15,
+    pub const Discrete_15: Self = Self((1 << 16) | 15);
     //     kAudioChannelLabel_Discrete_65535           = (1U<<16) | 65535,
+    pub const Discrete_65535: Self = Self((1 << 16) | 65535);
 
     //     // generic HOA ACN channel
     //     kAudioChannelLabel_HOA_ACN                  = 500,
