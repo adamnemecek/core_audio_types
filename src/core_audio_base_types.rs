@@ -913,6 +913,18 @@ pub struct SMPTETime {
 //     kAudioTimeStampSMPTETimeValid       = (1U << 4),
 //     kAudioTimeStampSampleHostTimeValid  = (kAudioTimeStampSampleTimeValid | kAudioTimeStampHostTimeValid)
 // };
+bitflags::bitflags! {
+    #[allow(non_upper_case_globals)]
+     pub struct AudioTimeStampFlags: u32 {
+         const NothingValid         = 0;
+         const SampleTimeValid      = 1 << 0;
+         const HostTimeValid        = 1 << 1;
+         const RateScalarValid      = 1 << 2;
+         const WordClockTimeValid   = 1 << 3;
+         const SMPTETimeValid       = 1 << 4;
+         const SampleHostTimeValid  = Self::SampleTimeValid.bits | Self::HostTimeValid.bits;
+     }
+ }
 
 // /*!
 //     @struct         AudioTimeStamp
