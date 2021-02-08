@@ -132,3 +132,16 @@ pub enum AVAudioSessionErrorCode {
 // };
 
 // #endif // CoreAudioTypes_AudioSessionTypes_h
+mod tests {
+    use super::*;
+    // #[test]
+    // fn test_session_error_code() {
+    //     fn check(code: AVAudioSessionErrorCode) -> bool {
+
+    //     }
+        // let code = AVAudioSessionErrorCode::MediaServicesFailed;
+        // assert!(code as u64 == 0x6D737276);
+
+        
+    // }
+}
