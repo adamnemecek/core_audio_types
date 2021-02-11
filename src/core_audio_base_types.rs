@@ -1000,7 +1000,7 @@ bitflags::bitflags! {
 // };
 // typedef struct AudioTimeStamp   AudioTimeStamp;
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, PartialEq)]
 pub struct AudioTimeStamp {
     pub m_sample_time: f64,
     pub m_host_time: u64,
@@ -1009,6 +1009,33 @@ pub struct AudioTimeStamp {
     pub m_smpte_time: SMPTETime,
     pub m_flags: AudioTimeStampFlags,
     pub m_reserved: u32,
+}
+
+impl std::fmt::Debug for AudioTimeStamp {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let flags = self.m_flags;
+        if flags.contains(AudioTimeStampFlags::SampleTimeValid) {
+            write!(f, "sample_time {}", self.m_sample_time)?
+        }
+
+        if flags.contains(AudioTimeStampFlags::HostTimeValid) {
+            write!(f, "m_host_time {}", self.m_host_time)?
+        }
+
+        if flags.contains(AudioTimeStampFlags::RateScalarValid) {
+            write!(f, "m_rate_scalar {}", self.m_rate_scalar)?
+        }
+
+        if flags.contains(AudioTimeStampFlags::WordClockTimeValid) {
+            write!(f, "m_word_clock_time {}", self.m_word_clock_time)?
+        }
+
+        if flags.contains(AudioTimeStampFlags::SMPTETimeValid) {
+            write!(f, "m_smpte_time {:?}", self.m_smpte_time)?
+        }
+
+        Ok(())
+    }
 }
 
 // /*!

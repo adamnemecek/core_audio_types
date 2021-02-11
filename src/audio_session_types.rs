@@ -139,9 +139,8 @@ mod tests {
     //     fn check(code: AVAudioSessionErrorCode) -> bool {
 
     //     }
-        // let code = AVAudioSessionErrorCode::MediaServicesFailed;
-        // assert!(code as u64 == 0x6D737276);
+    // let code = AVAudioSessionErrorCode::MediaServicesFailed;
+    // assert!(code as u64 == 0x6D737276);
 
-        
     // }
 }
