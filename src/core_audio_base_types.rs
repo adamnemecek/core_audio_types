@@ -1011,26 +1011,53 @@ pub struct AudioTimeStamp {
     pub m_reserved: u32,
 }
 
+impl AudioTimeStamp {
+    #[inline]
+    pub fn is_sample_time_valid(&self) -> bool {
+        self.m_flags.contains(AudioTimeStampFlags::SampleTimeValid)
+    }
+
+    #[inline]
+    pub fn is_host_time_valid(&self) -> bool {
+        self.m_flags.contains(AudioTimeStampFlags::HostTimeValid)
+    }
+
+    #[inline]
+    pub fn is_rate_scalar_valid(&self) -> bool {
+        self.m_flags.contains(AudioTimeStampFlags::RateScalarValid)
+    }
+
+    #[inline]
+    pub fn is_world_clock_time_valid(&self) -> bool {
+        self.m_flags.contains(AudioTimeStampFlags::WordClockTimeValid)
+    }
+
+    #[inline]
+    pub fn is_smpte_time_valid(&self) -> bool {
+        self.m_flags.contains(AudioTimeStampFlags::SMPTETimeValid)
+    }
+}
+
 impl std::fmt::Debug for AudioTimeStamp {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let flags = self.m_flags;
-        if flags.contains(AudioTimeStampFlags::SampleTimeValid) {
+        if self.is_sample_time_valid() {
             write!(f, "sample_time {}", self.m_sample_time)?
         }
 
-        if flags.contains(AudioTimeStampFlags::HostTimeValid) {
+        if self.is_host_time_valid() {
             write!(f, "m_host_time {}", self.m_host_time)?
         }
 
-        if flags.contains(AudioTimeStampFlags::RateScalarValid) {
+        if self.is_rate_scalar_valid() {
             write!(f, "m_rate_scalar {}", self.m_rate_scalar)?
         }
 
-        if flags.contains(AudioTimeStampFlags::WordClockTimeValid) {
+        if self.is_world_clock_time_valid() {
             write!(f, "m_word_clock_time {}", self.m_word_clock_time)?
         }
 
-        if flags.contains(AudioTimeStampFlags::SMPTETimeValid) {
+        if self.is_smpte_time_valid() {
             write!(f, "m_smpte_time {:?}", self.m_smpte_time)?
         }
 
